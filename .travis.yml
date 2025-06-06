@@ -1,4 +1,17 @@
 os: linux
-arch: ppc64le
 dist: focal
-script: true
+arch: ppc64le
+language: shell
+
+services:
+    - docker
+
+before_install:
+    - sudo apt update -y
+    - sudo apt install -y jq; jq --version
+
+script:
+    - sudo apt update -y && sudo apt-get install file -y
+#pip3 install --upgrade requests
+    - pip3 install --force-reinstall -v "requests==2.31.0"
+    - pip3 install --upgrade docker
